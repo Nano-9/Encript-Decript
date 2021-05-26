@@ -13,32 +13,60 @@ from pyAesCrypt import decryptFile
 os.system("clear")
 chave = "encriptandoedescriptografandoosarquivos"
 
-print("""
-Menu:
+logar = sys.argv
+if len(logar) == 2 or len(logar) == 4 or len(logar) == 6:
+	if sys.argv[1] == "-e":
+		if sys.argv[2] == "-t":
+			print()
+			localizacao = str(sys.argv[5])
+			tipo_arquiv = str(sys.argv[3])
+			local = Path.home() / "{}".format(localizacao)
+			for tipo in os.listdir(str(local)):
+				if tipo.endswith(str(tipo_arquiv)):
+					arquivo = tipo
+					novo_fl = "encriptado" + os.path.basename(arquivo) + ".aes"
+					encryptFile(arquivo,novo_fl,chave)
+					os.remove(arquivo)
+					print("Arquivo criptografado!\n")
 
-[1] - Criptografar
-[2] - Descriptografar
-\n	""")
-escolha = int(input("O que deseja: "))
-if escolha == 1:
-	print()
-	localizacao = str(input("Informe onde o arquivo está: "))
-	tipo_arquiv = str(input("Informe a extensão do arquivo: ")).strip().lower()
-	local = Path.home() / "{}".format(localizacao)
-	for tipo in os.listdir(str(local)):
-		if tipo.endswith(str(tipo_arquiv)):
-			arquivo = tipo
-			novo_fl = "encriptado" + os.path.basename(arquivo) + ".aes"
-			encryptFile(arquivo,novo_fl,chave)
-			os.remove(arquivo)
-elif escolha == 2:
-	caminho = str(input("Caminho: "))
-	local = Path.home() / "{}".format(caminho)
-	for item2 in os.listdir(str(local)):
-		if item2.endswith(".aes"):
-			descript = item2
-			volta_fl = descript.replace("encriptado","")
-			volta2_f = volta_fl.replace(".aes","")
-			decryptFile(descript,volta2_f,chave)
-			os.remove(item2)
+	if sys.argv[1] == "-d":
+			caminho = str(sys.argv[3])
+			local = Path.home() / "{}".format(caminho)
+			for item2 in os.listdir(str(local)):
+				if item2.endswith(".aes"):
+					descript = item2
+					volta_fl = descript.replace("encriptado","")
+					volta2_f = volta_fl.replace(".aes","")
+					decryptFile(descript,volta2_f,chave)
+					os.remove(item2)
+					print("Arquivo descriptografado!\n")
+	if sys.argv[1] == "--h":
+		os.system("clear")
+		print("""
+Comandos para utilizar o script:\n
+
+-e [Criptografar]
+-d [Descritografar]
+-t [Tipo/Extensão do arquivo]
+-l [Local onde o arquivo se encontra]
+
+Exemplos de comandos prontos:
+
+[Para Criptografar]
+
+python3 cript.py -e -t .txt -l Desktop
+python3 cript.py -e -t .txt -l Downloads\\Textos
+
+[Para Descriptografar]
+
+python3 cript.py -d -l Desktop
+python3 cript.py -d -l Downloads\\Textos
+
+[Para Ajuda]
+python3 cript.py --h
+
+""")
+
+else:
+	print("Digite: python3 cript.py --h")
 # FIM
