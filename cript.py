@@ -41,3 +41,4 @@ elif escolha == 2:
 			volta2_f = volta_fl.replace(".aes","")
 			decryptFile(descript,volta2_f,chave)
 			os.remove(item2)
+# FIM
