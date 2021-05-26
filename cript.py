@@ -6,7 +6,6 @@
 
 import os
 import sys
-import shutil
 from pathlib import Path
 from pyAesCrypt import encryptFile
 from pyAesCrypt import decryptFile
