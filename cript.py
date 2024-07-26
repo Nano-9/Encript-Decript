@@ -1,6 +1,6 @@
 # criptografador de arquivos                                       |
 # programa utilizado para criptografar e descriptografar arquivos  | \
-# caso você tenha um arquivo sensível que queira encriptar             by: lucas-Dk | whatsapp: +5531986802198
+# caso você tenha um arquivo sensível que queira encriptar             by: Nano-9 | Telegram: https://t.me/rdzin9
 # pode estar utilizando esse script!                               | /
 # façam bom uso!                                                   |
 
